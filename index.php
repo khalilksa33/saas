@@ -4,6 +4,15 @@
  * Hostinger Shared Hosting & Localhost Compatible
  */
 
+// If running with PHP's built-in CLI server and the requested static file exists, return false to let PHP serve it
+if (php_sapi_name() === 'cli-server') {
+    $reqPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+    $fullPath = __DIR__ . $reqPath;
+    if ($reqPath !== '/' && is_file($fullPath)) {
+        return false;
+    }
+}
+
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/helpers.php';
