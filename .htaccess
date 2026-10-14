@@ -9,6 +9,9 @@ Options -Indexes
 # Follow symbolic links
 Options +FollowSymLinks
 
+# Set directory index
+DirectoryIndex index.php index.html
+
 # Enable Rewrite Engine
 <IfModule mod_rewrite.c>
     RewriteEngine On
