@@ -1,4 +1,4 @@
-name: 🚀 Deploy CreatorPulse SaaS to Hostinger
+name: 🚀 Deploy iLoveDigital SaaS to Hostinger (ilovedigital.online)
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 📦 Sync Files to Hostinger Subdomain (tools/)
+    name: 📦 Sync Files to Hostinger (ilovedigital.online)
     runs-on: ubuntu-latest
 
     steps:
@@ -20,11 +20,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🚀 Sync Files to Hostinger Subdomain
+      - name: 🚀 Sync Files to Hostinger
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR || 'tools' }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR || 'public_html' }}
         run: |
           python3 scripts/deploy_hostinger.py

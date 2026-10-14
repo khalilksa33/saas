@@ -1,6 +1,6 @@
-# ⚡ CreatorPulse — All-in-One Digital Creator SaaS Platform
+# 💖 iLoveDigital — All-in-One Digital Creator SaaS Platform
 
-> Built with **PHP 8+, HTML5 Canvas, Vanilla CSS3 & Modern JavaScript**. Ready for **Hostinger Shared Web Hosting** with **GitHub Actions CI/CD Pipeline**.
+> Official domain: **[ilovedigital.online](https://ilovedigital.online)**. Built with **PHP 8+, HTML5 Canvas, Vanilla CSS3 & Modern JavaScript**. Ready for **Hostinger Shared Web Hosting** with **GitHub Actions CI/CD Pipeline**.
 
 ---
 

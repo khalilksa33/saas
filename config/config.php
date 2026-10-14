@@ -24,14 +24,25 @@ if (file_exists($envFile)) {
 }
 
 // App Settings
-define('APP_NAME', getenv('APP_NAME') ?: 'CreatorPulse');
+define('APP_NAME', getenv('APP_NAME') ?: 'iLoveDigital');
 define('APP_TAGLINE', 'All-in-One Growth & Content Studio for Digital Creators');
 define('APP_VERSION', '1.0.0');
 define('APP_ENV', getenv('APP_ENV') ?: 'production'); // 'production' or 'development'
 
+// Production error reporting and logging
+if (APP_ENV === 'production') {
+    ini_set('display_errors', '0');
+    ini_set('display_startup_errors', '0');
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+} else {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+}
+
 // Determine Base URL dynamically or from env
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? "https://" : "http://";
-$host = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
+$host = $_SERVER['HTTP_HOST'] ?? 'ilovedigital.online';
 $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
 $basePath = ($scriptDir === '/' || $scriptDir === '') ? '' : rtrim($scriptDir, '/');
 $computedBaseUrl = $protocol . $host . $basePath;

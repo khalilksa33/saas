@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'plan' => $plan
         ]);
 
-        set_flash('success', 'Your creator account is ready! Welcome to CreatorPulse.');
+        set_flash('success', 'Your creator account is ready! Welcome to ' . APP_NAME . '.');
         redirect('dashboard');
 
     } catch (Exception $e) {
@@ -85,7 +85,7 @@ require_once __DIR__ . '/../includes/header.php';
 <div style="min-height: calc(100vh - 120px); display: flex; align-items: center; justify-content: center; padding: 2rem 1rem;">
     <div class="card" style="width: 100%; max-width: 460px; padding: 2.5rem 2rem;">
         <div style="text-align: center; margin-bottom: 2rem;">
-            <div class="brand-badge" style="margin: 0 auto 1rem; width: 44px; height: 44px; font-size: 1.4rem;">⚡</div>
+            <img src="<?= asset('images/logo-icon.svg') ?>" alt="<?= e(APP_NAME) ?>" style="margin: 0 auto 1rem; width: 48px; height: 48px; filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.45));">
             <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Create Your Studio</h2>
             <p style="color: var(--text-secondary); font-size: 0.9rem;">Join the all-in-one platform for modern creators</p>
         </div>

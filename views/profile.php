@@ -96,7 +96,7 @@ require_once __DIR__ . '/../includes/app_layout_start.php';
             </div>
 
             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;">
-                You currently have access to all CreatorPulse pro modules, unlimited bio links, 4K canvas exports, and sponsorship tools.
+                You currently have access to all <?= e(APP_NAME) ?> pro modules, unlimited bio links, 4K canvas exports, and sponsorship tools.
             </p>
 
             <form method="POST" action="<?= url('profile') ?>">
@@ -126,6 +126,7 @@ require_once __DIR__ . '/../includes/app_layout_start.php';
                 <span>🚀</span> Hostinger Shared Hosting CI/CD
             </h3>
             <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+                Domain: <strong>ilovedigital.online</strong><br>
                 GitHub Account: <strong>khalilksa33</strong><br>
                 Deployment Method: <strong>GitHub Actions FTPS to Hostinger public_html</strong><br>
                 Database Engine: <strong>SQLite / MySQL PDO (Zero-Config)</strong>

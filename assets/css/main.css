@@ -180,6 +180,39 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.5px;
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover {
+  transform: translateY(-1px);
+}
+
+.brand-logo-img {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.45));
+  transition: all var(--transition-normal);
+  display: block;
+  flex-shrink: 0;
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.08) rotate(-2deg);
+  filter: drop-shadow(0 0 16px rgba(236, 72, 153, 0.65));
+}
+
+.brand-text {
+  color: var(--text-white);
+  font-weight: 700;
+}
+
+.brand-highlight {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
 }
 
 .brand-badge {

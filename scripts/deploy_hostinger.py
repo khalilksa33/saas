@@ -9,11 +9,29 @@ import sys
 import ftplib
 import time
 
+def ensure_ftp_dir(ftp, path):
+    """Recursively ensure a directory path exists on the FTP server and cwd into it."""
+    clean_path = path.strip('/')
+    if not clean_path or clean_path == '.':
+        return
+    parts = clean_path.split('/')
+    for part in parts:
+        if not part:
+            continue
+        try:
+            ftp.cwd(part)
+        except Exception:
+            try:
+                ftp.mkd(part)
+            except Exception:
+                pass
+            ftp.cwd(part)
+
 def main():
     server = os.environ.get('FTP_SERVER')
     username = os.environ.get('FTP_USERNAME')
     password = os.environ.get('FTP_PASSWORD')
-    target_dir = os.environ.get('FTP_SERVER_DIR', 'tools').strip('/')
+    target_dir = os.environ.get('FTP_SERVER_DIR', 'public_html').strip()
 
     if not server or not username or not password:
         print("❌ Error: Missing FTP_SERVER, FTP_USERNAME, or FTP_PASSWORD environment variables.")
@@ -32,13 +50,10 @@ def main():
         print("✅ FTP connection established.")
 
     # Ensure target directory exists and enter it
-    try:
-        ftp.cwd(target_dir)
-        print(f"📂 Changed to target directory: {target_dir}")
-    except Exception:
-        print(f"📁 Creating target directory: {target_dir}")
-        ftp.mkd(target_dir)
-        ftp.cwd(target_dir)
+    if target_dir and target_dir not in ('.', '/'):
+        print(f"📂 Navigating to target directory: {target_dir}")
+        ensure_ftp_dir(ftp, target_dir)
+    print(f"📍 Current remote directory: {ftp.pwd()}")
 
     # Clean default.php if present
     try:
@@ -48,7 +63,7 @@ def main():
         pass
 
     # Exclusions
-    EXCLUDE_DIRS = {'.git', '.github', 'scripts', 'data', '__pycache__'}
+    EXCLUDE_DIRS = {'.git', '.github', 'scripts', 'data', 'logs', '__pycache__', '.vscode', '.idea'}
     EXCLUDE_FILES = {'.env', 'README.md', 'DEPLOYMENT.md', '.gitignore'}
 
     def upload_dir(local_path, remote_path=''):

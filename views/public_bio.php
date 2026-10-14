@@ -61,6 +61,15 @@ $socialIcons = [
     <title><?= e($name) ?> (@<?= e($data['username']) ?>) — Links & Assets</title>
     <meta name="description" content="<?= e($bio) ?>">
 
+    <!-- Favicons & Mobile Icons -->
+    <link rel="icon" type="image/svg+xml" href="<?= asset('images/favicon.svg') ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= asset('images/favicon-32x32.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= asset('images/favicon-16x16.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('images/apple-touch-icon.png') ?>">
+    <link rel="shortcut icon" href="<?= url('favicon.ico') ?>">
+    <link rel="manifest" href="<?= url('site.webmanifest') ?>">
+    <meta name="theme-color" content="#090d16">
+
     <link rel="stylesheet" href="<?= asset('css/main.css') ?>?v=<?= APP_VERSION ?>">
     <link rel="stylesheet" href="<?= asset('css/bio-page.css') ?>?v=<?= APP_VERSION ?>">
     
@@ -121,8 +130,9 @@ $socialIcons = [
 
         <!-- Footer -->
         <div class="bio-branding-footer">
-            <a href="<?= url() ?>" target="_blank" style="opacity: 0.8; transition: opacity 0.2s;">
-                ⚡ Powered by <strong><?= e(APP_NAME) ?></strong>
+            <a href="<?= url() ?>" target="_blank" style="opacity: 0.85; transition: opacity 0.2s; display: inline-flex; align-items: center; gap: 0.45rem;">
+                <img src="<?= asset('images/logo-icon.svg') ?>" alt="<?= e(APP_NAME) ?>" width="18" height="18" style="vertical-align: middle;">
+                <span>Powered by <strong><?= e(APP_NAME) ?></strong></span>
             </a>
         </div>
     </div>

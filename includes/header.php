@@ -18,9 +18,19 @@ $user = Auth::user();
     <title><?= e($pageTitle) ?></title>
     <meta name="description" content="<?= e($pageDesc) ?>">
     
+    <!-- Favicons & Mobile Icons -->
+    <link rel="icon" type="image/svg+xml" href="<?= asset('images/favicon.svg') ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= asset('images/favicon-32x32.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= asset('images/favicon-16x16.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('images/apple-touch-icon.png') ?>">
+    <link rel="shortcut icon" href="<?= url('favicon.ico') ?>">
+    <link rel="manifest" href="<?= url('site.webmanifest') ?>">
+    <meta name="theme-color" content="#090d16">
+    
     <!-- OpenGraph & Social SEO -->
     <meta property="og:title" content="<?= e($pageTitle) ?>">
     <meta property="og:description" content="<?= e($pageDesc) ?>">
+    <meta property="og:image" content="<?= asset('images/apple-touch-icon.png') ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= e(url()) ?>">
     
@@ -43,9 +53,9 @@ $user = Auth::user();
     <?php if (empty($hideNav)): ?>
     <header class="navbar">
         <div class="container nav-container">
-            <a href="<?= url() ?>" class="brand-logo">
-                <div class="brand-badge">⚡</div>
-                <span><?= e(APP_NAME) ?></span>
+            <a href="<?= url() ?>" class="brand-logo" title="<?= e(APP_NAME) ?>">
+                <img src="<?= asset('images/logo-icon.svg') ?>" alt="<?= e(APP_NAME) ?>" class="brand-logo-img" width="34" height="34">
+                <span class="brand-text">iLove<span class="brand-highlight">Digital</span></span>
             </a>
 
             <ul class="nav-links">

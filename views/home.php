@@ -302,7 +302,7 @@ require_once __DIR__ . '/../includes/header.php';
         <div class="card card-glow" style="padding: 3.5rem 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);">
             <h2 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 1rem;">Ready to elevate your creator business?</h2>
             <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
-                Join thousands of creators using CreatorPulse to grow their audience and secure brand sponsorships.
+                Join thousands of creators using <?= e(APP_NAME) ?> to grow their audience and secure brand sponsorships.
             </p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="<?= url('register') ?>" class="btn btn-lg btn-primary">Create Your Free Account 🚀</a>

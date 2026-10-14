@@ -17,6 +17,15 @@ $currentRoute = $currentRoute ?? 'dashboard';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Creator Studio') ?> — <?= e(APP_NAME) ?></title>
     
+    <!-- Favicons & Mobile Icons -->
+    <link rel="icon" type="image/svg+xml" href="<?= asset('images/favicon.svg') ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= asset('images/favicon-32x32.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= asset('images/favicon-16x16.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('images/apple-touch-icon.png') ?>">
+    <link rel="shortcut icon" href="<?= url('favicon.ico') ?>">
+    <link rel="manifest" href="<?= url('site.webmanifest') ?>">
+    <meta name="theme-color" content="#090d16">
+
     <link rel="stylesheet" href="<?= asset('css/main.css') ?>?v=<?= APP_VERSION ?>">
     <link rel="stylesheet" href="<?= asset('css/dashboard.css') ?>?v=<?= APP_VERSION ?>">
     <?php if (isset($extraCss)): ?>
@@ -36,9 +45,9 @@ $currentRoute = $currentRoute ?? 'dashboard';
     <!-- Sidebar -->
     <aside class="app-sidebar">
         <div class="sidebar-header">
-            <a href="<?= url('dashboard') ?>" class="brand-logo">
-                <div class="brand-badge">⚡</div>
-                <span><?= e(APP_NAME) ?></span>
+            <a href="<?= url('dashboard') ?>" class="brand-logo" title="<?= e(APP_NAME) ?>">
+                <img src="<?= asset('images/logo-icon.svg') ?>" alt="<?= e(APP_NAME) ?>" class="brand-logo-img" width="34" height="34">
+                <span class="brand-text">iLove<span class="brand-highlight">Digital</span></span>
             </a>
         </div>
 
@@ -116,7 +125,7 @@ $currentRoute = $currentRoute ?? 'dashboard';
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <button type="button" id="sidebarToggle" class="btn btn-sm btn-secondary" style="display: none;">☰</button>
                 <div class="app-breadcrumbs">
-                    <span>CreatorPulse</span>
+                    <span><?= e(APP_NAME) ?></span>
                     <span>/</span>
                     <span class="active"><?= e($pageTitle ?? 'Dashboard') ?></span>
                 </div>

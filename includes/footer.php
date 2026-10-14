@@ -9,8 +9,8 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="brand-logo" style="margin-bottom: 1rem;">
-                        <div class="brand-badge">⚡</div>
-                        <span><?= e(APP_NAME) ?></span>
+                        <img src="<?= asset('images/logo-icon.svg') ?>" alt="<?= e(APP_NAME) ?>" class="brand-logo-img" width="34" height="34">
+                        <span class="brand-text">iLove<span class="brand-highlight">Digital</span></span>
                     </div>
                     <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px; color: var(--text-secondary);">
                         The all-in-one growth suite for YouTube, Instagram, TikTok, and digital creators. Built for speed, high-conversion, and effortless monetization.
