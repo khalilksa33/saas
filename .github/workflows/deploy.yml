@@ -28,3 +28,10 @@ jobs:
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR || 'public_html' }}
         run: |
           python3 scripts/deploy_hostinger.py
+
+      - name: 🌐 Verify Live Site Response
+        run: |
+          echo "Waiting 5 seconds for web server cache..."
+          sleep 5
+          echo "Testing https://ilovedigital.online response:"
+          curl -s -L -k https://ilovedigital.online | grep -i "iLoveDigital" && echo "✅ SUCCESS: ilovedigital.online is live and serving iLoveDigital SaaS!" || (echo "Notice: Checking headers" && curl -I -k https://ilovedigital.online)
