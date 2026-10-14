@@ -15,13 +15,16 @@ return [
 
     // Navigation
     'nav_tools' => 'أدوات صناع المحتوى',
+    'nav_blog' => 'المقالات والأدلة',
     'nav_pricing' => 'باقات الأسعار',
     'nav_showcase' => 'معاينة حية',
     'nav_faq' => 'الأسئلة الشائعة',
     'nav_dashboard' => 'لوحة التحكم',
+    'nav_superadmin' => 'لوحة الإدارة العليا',
     'nav_signin' => 'تسجيل الدخول',
     'nav_signup' => 'ابدأ مجاناً 🚀',
     'nav_demo' => '⚡ تجربة فورية بنقرة واحدة',
+
 
     // Hero Section
     'hero_badge' => 'جديد 2026',

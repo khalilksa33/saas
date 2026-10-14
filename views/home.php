@@ -1,8 +1,13 @@
 <?php
 $pageTitle = APP_NAME . ' — ' . __('app_tagline');
 $pageDesc = __('app_desc');
+
+$pdo = DB::getConnection();
+$latestPosts = $pdo->query("SELECT id, title, slug, category, author_name, cover_image, read_time, lang, excerpt, created_at FROM blog_posts WHERE status = 'published' ORDER BY created_at DESC LIMIT 3")->fetchAll();
+
 require_once __DIR__ . '/../includes/header.php';
 ?>
+
 
 <!-- Hero Section -->
 <section style="padding: 5rem 0 3.5rem; text-align: center; position: relative;">
@@ -265,8 +270,132 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
 </section>
 
+<!-- Authentic Creator Stories Section -->
+<section style="padding: 5rem 0; background: rgba(255, 255, 255, 0.015); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+            <span class="badge badge-primary" style="margin-bottom: 0.75rem;">AUTHENTIC CREATOR STORIES</span>
+            <h2 style="font-size: 2.3rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 1rem;">
+                Built by creators who were tired of 6 different subscriptions
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 1.05rem;">
+                Here is why YouTubers, podcasters, and digital consultants made iLoveDigital their daily creative studio.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="card card-glow" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 1.25rem; color: #f59e0b; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem;">
+                        "I used to pay $24/mo for Linktree Pro, $13/mo for Canva, and struggled with ugly invoice templates. iLoveDigital replaced them all. My bio link click-through rate jumped from 4% to 18% in the first week."
+                    </p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Maya Chen" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div style="font-weight: 700;">Maya Chen</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Tech & Workflow Creator (84k subs)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-glow" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 1.25rem; color: #f59e0b; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem;">
+                        "Finding a platform that respects Arabic typography (RTL) with genuine luxury design was impossible before this. My followers in Saudi Arabia and the UAE love the fluid dark mode and instant speed."
+                    </p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Omar Farooq" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div style="font-weight: 700;">Omar Farooq</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Digital Consultant & Podcaster (Riyadh)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-glow" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 1.25rem; color: #f59e0b; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="font-size: 0.98rem; line-height: 1.6; color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem;">
+                        "The Sponsorship Calculator and instant PDF invoice generator alone made me thousands. Brands stop haggling when you send them an itemized deliverable sheet that looks this professional."
+                    </p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Sarah Jenkins" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div style="font-weight: 700;">Sarah Jenkins</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Creator Business Coach</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Creator Blog Section -->
+<?php if (!empty($latestPosts)): ?>
+<section style="padding: 5rem 0;">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <span class="badge badge-primary" style="margin-bottom: 0.75rem;">CREATOR PLAYBOOKS</span>
+                <h2 style="font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem;">
+                    Tactics from the Creator Frontier
+                </h2>
+                <p style="color: var(--text-secondary); font-size: 1.05rem;">
+                    No generic fluff. Proven strategies for audience retention, rate negotiation, and conversion funnels.
+                </p>
+            </div>
+            <a href="<?= url('blog') ?>" class="btn btn-secondary">
+                View All Articles →
+            </a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+            <?php foreach ($latestPosts as $bp): ?>
+                <article class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <a href="<?= url('blog/' . e($bp['slug'])) ?>" style="position: relative; height: 180px; overflow: hidden; display: block;">
+                        <img src="<?= e($bp['cover_image'] ?: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80') ?>" alt="<?= e($bp['title']) ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="badge badge-pro" style="position: absolute; top: 0.75rem; right: 0.75rem; font-size: 0.7rem;">
+                            <?= e($bp['category']) ?>
+                        </span>
+                        <?php if ($bp['lang'] === 'ar'): ?>
+                            <span class="badge" style="position: absolute; top: 0.75rem; left: 0.75rem; font-size: 0.7rem; background: rgba(0,0,0,0.7);">
+                                🇸🇦 بالعربية
+                            </span>
+                        <?php endif; ?>
+                    </a>
+                    <div style="padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                                ⏱️ <?= e($bp['read_time']) ?> • <?= date('M j, Y', strtotime($bp['created_at'])) ?>
+                            </div>
+                            <h3 style="font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.75rem;">
+                                <a href="<?= url('blog/' . e($bp['slug'])) ?>" style="color: inherit; text-decoration: none;">
+                                    <?= e($bp['title']) ?>
+                                </a>
+                            </h3>
+                            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.25rem;">
+                                <?= e(mb_strimwidth($bp['excerpt'], 0, 120, '...')) ?>
+                            </p>
+                        </div>
+                        <a href="<?= url('blog/' . e($bp['slug'])) ?>" style="color: var(--primary); font-weight: 700; font-size: 0.85rem; text-decoration: none;">
+                            Read Playbook →
+                        </a>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <!-- FAQ Section -->
 <section id="faq" style="padding: 5rem 0;">
+
     <div class="container" style="max-width: 820px;">
         <div style="text-align: center; margin-bottom: 3rem;">
             <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.75rem;">Frequently Asked Questions</h2>

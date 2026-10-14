@@ -29,12 +29,14 @@
                 <div class="footer-col">
                     <h4><?= __('nav_tools') ?></h4>
                     <ul>
+                        <li><a href="<?= url('blog') ?>"><?= __('nav_blog', 'Creator Blog & Insights') ?></a></li>
                         <li><a href="<?= url('p/alexcreator') ?>" target="_blank">Demo Creator Page</a></li>
                         <li><a href="<?= url('#pricing') ?>"><?= __('nav_pricing') ?></a></li>
                         <li><a href="<?= url('#faq') ?>"><?= __('nav_faq') ?></a></li>
                         <li><a href="<?= url('DEPLOYMENT.md') ?>"><?= __('footer_guide') ?></a></li>
                     </ul>
                 </div>
+
                 <div class="footer-col">
                     <h4><?= __('dash_settings') ?></h4>
                     <ul>

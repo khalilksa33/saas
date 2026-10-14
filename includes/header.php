@@ -88,6 +88,7 @@ $user = Auth::user();
 
             <ul class="nav-links">
                 <li><a href="<?= url('#features') ?>" class="nav-link"><?= __('nav_tools') ?></a></li>
+                <li><a href="<?= url('blog') ?>" class="nav-link"><?= __('nav_blog', 'Blog') ?></a></li>
                 <li><a href="<?= url('#pricing') ?>" class="nav-link"><?= __('nav_pricing') ?></a></li>
                 <li><a href="<?= url('#showcase') ?>" class="nav-link"><?= __('nav_showcase') ?></a></li>
                 <li><a href="<?= url('#faq') ?>" class="nav-link"><?= __('nav_faq') ?></a></li>
@@ -133,12 +134,18 @@ $user = Auth::user();
                 </div>
 
                 <?php if ($user): ?>
+                    <?php if (Auth::isSuperAdmin()): ?>
+                        <a href="<?= url('admin') ?>" class="btn btn-sm btn-outline" style="border-color: #f59e0b; color: #f59e0b; font-weight: 700;">
+                            ⚡ <?= __('nav_superadmin', 'Superadmin') ?>
+                        </a>
+                    <?php endif; ?>
                     <a href="<?= url('dashboard') ?>" class="btn btn-sm btn-primary"><?= __('nav_dashboard') ?> →</a>
                 <?php else: ?>
                     <a href="<?= url('login') ?>" class="btn btn-sm btn-secondary"><?= __('nav_signin') ?></a>
                     <a href="<?= url('register') ?>" class="btn btn-sm btn-primary"><?= __('nav_signup') ?></a>
                 <?php endif; ?>
             </div>
+
         </div>
     </header>
     <?php endif; ?>

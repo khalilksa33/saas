@@ -7,10 +7,12 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(150) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     plan VARCHAR(20) DEFAULT 'free',
+    role VARCHAR(20) DEFAULT 'user',
     avatar_url VARCHAR(255) DEFAULT '',
     bio TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE IF NOT EXISTS bio_profiles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,3 +94,22 @@ CREATE TABLE IF NOT EXISTS saved_assets (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS blog_posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
+    excerpt TEXT,
+    content TEXT NOT NULL,
+    cover_image VARCHAR(500) DEFAULT '',
+    author_name VARCHAR(100) DEFAULT 'iLoveDigital Team',
+    category VARCHAR(50) DEFAULT 'Growth',
+    tags VARCHAR(255) DEFAULT '',
+    read_time VARCHAR(20) DEFAULT '5 min read',
+    lang VARCHAR(10) DEFAULT 'en', -- 'en' or 'ar'
+    status VARCHAR(20) DEFAULT 'published', -- 'draft' or 'published'
+    views_count INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+

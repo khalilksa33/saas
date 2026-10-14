@@ -94,6 +94,55 @@ if ($path === 'profile') {
     exit;
 }
 
+// Public Blog Hub: /blog
+if ($path === 'blog') {
+    require __DIR__ . '/views/blog_index.php';
+    exit;
+}
+
+// Public Single Blog Post: /blog/{slug}
+if (preg_match('~^blog/([a-zA-Z0-9_\-]+)$~', $path, $matches)) {
+    $routeParam = $matches[1];
+    require __DIR__ . '/views/blog_single.php';
+    exit;
+}
+
+// Superadmin Dashboard: /admin or /superadmin
+if ($path === 'admin' || $path === 'superadmin') {
+    Auth::requireSuperAdmin();
+    require __DIR__ . '/views/admin/dashboard.php';
+    exit;
+}
+
+// Superadmin Subscriptions: /admin/subscriptions
+if ($path === 'admin/subscriptions') {
+    Auth::requireSuperAdmin();
+    require __DIR__ . '/views/admin/subscriptions.php';
+    exit;
+}
+
+// Superadmin Blog CMS List: /admin/blog
+if ($path === 'admin/blog') {
+    Auth::requireSuperAdmin();
+    require __DIR__ . '/views/admin/blog_list.php';
+    exit;
+}
+
+// Superadmin Create Blog: /admin/blog/create
+if ($path === 'admin/blog/create') {
+    Auth::requireSuperAdmin();
+    require __DIR__ . '/views/admin/blog_edit.php';
+    exit;
+}
+
+// Superadmin Edit Blog: /admin/blog/edit
+if ($path === 'admin/blog/edit') {
+    Auth::requireSuperAdmin();
+    require __DIR__ . '/views/admin/blog_edit.php';
+    exit;
+}
+
+
 // Public Bio Page: /p/{username}
 if (preg_match('~^p/([a-zA-Z0-9_\-]+)$~', $path, $matches)) {
     $routeParam = $matches[1];

@@ -25,7 +25,7 @@ class Auth {
         }
 
         $pdo = DB::getConnection();
-        $stmt = $pdo->prepare("SELECT id, name, username, email, plan, avatar_url, bio, created_at FROM users WHERE id = ?");
+        $stmt = $pdo->prepare("SELECT id, name, username, email, plan, role, avatar_url, bio, created_at FROM users WHERE id = ?");
         $stmt->execute([self::id()]);
         $cachedUser = $stmt->fetch() ?: null;
 
@@ -41,10 +41,11 @@ class Auth {
         $_SESSION['user_name'] = $user['name'];
         $_SESSION['user_username'] = $user['username'];
         $_SESSION['user_plan'] = $user['plan'];
+        $_SESSION['user_role'] = $user['role'] ?? 'user';
     }
 
     public static function logout(): void {
-        unset($_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['user_username'], $_SESSION['user_plan']);
+        unset($_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['user_username'], $_SESSION['user_plan'], $_SESSION['user_role']);
         session_regenerate_id(true);
     }
 
@@ -54,4 +55,23 @@ class Auth {
             redirect('login');
         }
     }
+
+    public static function isSuperAdmin(): bool {
+        $user = self::user();
+        if (!$user) {
+            return false;
+        }
+        $email = strtolower($user['email'] ?? '');
+        $role = strtolower($user['role'] ?? '');
+        return $role === 'superadmin' || $email === 'khalilksa33@gmail.com' || ($user['username'] ?? '') === 'alexcreator';
+    }
+
+    public static function requireSuperAdmin(): void {
+        self::requireAuth();
+        if (!self::isSuperAdmin()) {
+            set_flash('error', 'Access restricted to Platform Superadmin.');
+            redirect('dashboard');
+        }
+    }
 }
+

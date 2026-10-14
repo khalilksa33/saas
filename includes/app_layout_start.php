@@ -132,7 +132,30 @@ $currentRoute = $currentRoute ?? 'dashboard';
                     <span><?= __('dash_view_public') ?></span>
                 </a>
             </li>
+
+            <?php if (Auth::isSuperAdmin()): ?>
+                <li class="sidebar-label" style="color: #f59e0b;">SUPERADMIN</li>
+                <li class="sidebar-item <?= $currentRoute === 'admin_dashboard' ? 'active' : '' ?>">
+                    <a href="<?= url('admin') ?>">
+                        <span class="sidebar-icon">⚡</span>
+                        <span>Platform Ops</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?= $currentRoute === 'admin_subscriptions' ? 'active' : '' ?>">
+                    <a href="<?= url('admin/subscriptions') ?>">
+                        <span class="sidebar-icon">👥</span>
+                        <span>Subscriptions</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?= $currentRoute === 'admin_blog' ? 'active' : '' ?>">
+                    <a href="<?= url('admin/blog') ?>">
+                        <span class="sidebar-icon">📰</span>
+                        <span>Blog CMS</span>
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
+
 
         <div class="sidebar-footer">
             <div class="user-mini-card">
@@ -197,6 +220,12 @@ $currentRoute = $currentRoute ?? 'dashboard';
                     <?php endif; ?>
                 </div>
 
+                <?php if (Auth::isSuperAdmin()): ?>
+                    <a href="<?= url('admin') ?>" class="btn btn-sm btn-outline" style="border-color: #f59e0b; color: #f59e0b; font-weight: 700;" title="Superadmin Control Center">
+                        ⚡ Admin Ops
+                    </a>
+                <?php endif; ?>
+
                 <a href="<?= url('p/' . e($user['username'])) ?>" target="_blank" class="btn btn-sm btn-secondary">
                     <span>👁️ <?= __('dash_preview_bio') ?></span>
                 </a>
@@ -205,5 +234,6 @@ $currentRoute = $currentRoute ?? 'dashboard';
                 </a>
             </div>
         </header>
+
 
         <main class="app-content">

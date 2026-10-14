@@ -15,13 +15,16 @@ return [
 
     // Navigation
     'nav_tools' => 'Creator Tools',
+    'nav_blog' => 'Blog & Playbooks',
     'nav_pricing' => 'Pricing Plans',
     'nav_showcase' => 'Live Showcase',
     'nav_faq' => 'FAQ',
     'nav_dashboard' => 'Go to Dashboard',
+    'nav_superadmin' => 'Superadmin',
     'nav_signin' => 'Sign In',
     'nav_signup' => 'Start Free 🚀',
     'nav_demo' => '⚡ 1-Click Instant Demo',
+
 
     // Hero Section
     'hero_badge' => 'NEW 2026',
