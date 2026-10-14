@@ -159,9 +159,13 @@ class DB {
         if ($migrated) return;
         $migrated = true;
 
-        // 1. Ensure role column exists on users
+        // 1. Ensure role and google_id columns exist on users
         try {
             $pdo->exec("ALTER TABLE users ADD COLUMN role VARCHAR(20) DEFAULT 'user'");
+        } catch (Exception $e) {}
+
+        try {
+            $pdo->exec("ALTER TABLE users ADD COLUMN google_id VARCHAR(100) DEFAULT NULL");
         } catch (Exception $e) {}
 
         // 2. Ensure blog_posts table exists

@@ -25,7 +25,7 @@ class Auth {
         }
 
         $pdo = DB::getConnection();
-        $stmt = $pdo->prepare("SELECT id, name, username, email, plan, role, avatar_url, bio, created_at FROM users WHERE id = ?");
+        $stmt = $pdo->prepare("SELECT id, name, username, email, google_id, plan, role, avatar_url, bio, created_at FROM users WHERE id = ?");
         $stmt->execute([self::id()]);
         $cachedUser = $stmt->fetch() ?: null;
 

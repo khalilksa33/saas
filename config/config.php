@@ -54,6 +54,11 @@ $computedBaseUrl = $protocol . $host . $basePath;
 define('APP_URL', rtrim(getenv('APP_URL') ?: $computedBaseUrl, '/'));
 define('BASE_PATH', $basePath);
 
+// Google OAuth 2.0 Credentials (Sign in with Google / Gmail)
+define('GOOGLE_CLIENT_ID', getenv('GOOGLE_CLIENT_ID') ?: '');
+define('GOOGLE_CLIENT_SECRET', getenv('GOOGLE_CLIENT_SECRET') ?: '');
+define('GOOGLE_REDIRECT_URI', APP_URL . '/auth/google/callback');
+
 // Database Settings
 // Supported: 'sqlite' or 'mysql'
 define('DB_CONNECTION', getenv('DB_CONNECTION') ?: 'sqlite');

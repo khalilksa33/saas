@@ -17,6 +17,7 @@ require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/google_auth.php';
 
 // Parse request path
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
@@ -43,6 +44,79 @@ if ($path === 'login') {
 if ($path === 'register') {
     require __DIR__ . '/views/register.php';
     exit;
+}
+
+// Google OAuth 2.0: Initiate / Guided Setup
+if ($path === 'auth/google') {
+    $intent = $_GET['intent'] ?? 'login';
+    if (GoogleAuth::isConfigured() && !isset($_GET['setup'])) {
+        header("Location: " . GoogleAuth::getAuthUrl($intent));
+        exit;
+    }
+    require __DIR__ . '/views/auth_google_setup.php';
+    exit;
+}
+
+// Google OAuth 2.0: Official Callback
+if ($path === 'auth/google/callback') {
+    if (!empty($_GET['error'])) {
+        set_flash('error', 'Google sign-in was cancelled or encountered an error.');
+        redirect('login');
+    }
+
+    $code = $_GET['code'] ?? '';
+    $state = $_GET['state'] ?? '';
+
+    if (empty($code) || empty($state)) {
+        set_flash('error', 'Missing OAuth response parameters from Google.');
+        redirect('login');
+    }
+
+    try {
+        $result = GoogleAuth::handleCallback($code, $state);
+        $user = $result['user'];
+        $isNew = $result['is_new'];
+
+        if ($isNew) {
+            set_flash('success', __('auth_google_welcome_new', 'Welcome to ' . APP_NAME . '! Your creator account was created with Google.'));
+        } else {
+            set_flash('success', __('auth_google_welcome_back', 'Welcome back, ' . $user['name'] . '! Signed in with Google.'));
+        }
+        redirect('dashboard');
+    } catch (Exception $e) {
+        set_flash('error', 'Google authentication failed: ' . $e->getMessage());
+        redirect('login');
+    }
+}
+
+// Google OAuth 2.0: Instant Gmail Simulator (Fast Testing / Zero-Config)
+if ($path === 'auth/google/sim') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!verify_csrf()) {
+            set_flash('error', 'Session expired. Please try again.');
+            redirect('login');
+        }
+
+        $email = trim($_POST['email'] ?? 'khalilksa33@gmail.com');
+        $name = trim($_POST['name'] ?? '');
+
+        try {
+            $result = GoogleAuth::simulateLogin($email, $name);
+            $user = $result['user'];
+            $isNew = $result['is_new'];
+
+            if ($isNew) {
+                set_flash('success', 'Account created and signed in with Google (' . $user['email'] . ')!');
+            } else {
+                set_flash('success', 'Welcome back, ' . $user['name'] . '! Signed in via Google.');
+            }
+            redirect('dashboard');
+        } catch (Exception $e) {
+            set_flash('error', 'Sign-in failed: ' . $e->getMessage());
+            redirect('login');
+        }
+    }
+    redirect('auth/google');
 }
 
 if ($path === 'logout') {
