@@ -22,28 +22,18 @@ jobs:
           echo "Starting Hostinger Deployment for user: khalilksa33"
           php -v || true
 
-      - name: 🔍 Inspect Hostinger FTP Directory Tree
+      - name: 🧹 Clean Hostinger Subdomain Default Placeholder
         run: |
           python3 -c "
           import ftplib
           ftp = ftplib.FTP_TLS('${{ secrets.FTP_SERVER }}')
           ftp.login('${{ secrets.FTP_USERNAME }}', '${{ secrets.FTP_PASSWORD }}')
           ftp.prot_p()
-          print('Current FTP dir:', ftp.pwd())
-          root_items = ftp.nlst()
-          print('Root contents:', root_items)
-          for item in root_items:
-              try:
-                  sub = ftp.nlst(item)
-                  print(f'-- {item}/ ->', sub[:15])
-                  for s in sub:
-                      if 'tool' in s.lower() or 'public_html' in s.lower() or 'domain' in s.lower():
-                          try:
-                              print(f'   -- {s}/ ->', ftp.nlst(s)[:15])
-                          except Exception:
-                              pass
-              except Exception:
-                  pass
+          try:
+              ftp.delete('tools/default.php')
+              print('✅ Removed Hostinger default.php placeholder from tools/')
+          except Exception as e:
+              print('Note (default.php):', e)
           ftp.quit()
           "
 
@@ -53,7 +43,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/tools/' }}
+          server-dir: tools/
           protocol: ftps # Uses Secure FTPS (falls back to FTP if server requires)
           security: loose # Recommended for Hostinger shared certificate compatibility
           exclude: |
