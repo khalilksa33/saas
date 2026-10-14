@@ -1,0 +1,193 @@
+/**
+ * Social Media Graphics & Thumbnail Canvas Studio Styling
+ */
+
+.studio-container {
+  display: flex;
+  height: calc(100vh - 120px);
+  gap: 1.5rem;
+}
+
+.studio-sidebar {
+  width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.studio-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-glass);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.studio-tab-btn {
+  flex: 1;
+  padding: 0.85rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.studio-tab-btn.active {
+  color: var(--primary);
+  background: rgba(99, 102, 241, 0.1);
+  border-bottom: 2px solid var(--primary);
+}
+
+.studio-panel {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.preset-chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.preset-chip {
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.preset-chip:hover, .preset-chip.active {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.preset-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.preset-res {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform var(--transition-fast);
+}
+
+.color-swatch:hover {
+  transform: scale(1.15);
+}
+
+.studio-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-glass);
+  overflow: hidden;
+  position: relative;
+}
+
+.studio-toolbar {
+  height: 54px;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 10;
+}
+
+.canvas-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: auto;
+  background: 
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+#thumbnailCanvas {
+  background: #111;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.badge-item {
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed var(--border-glass);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.badge-item:hover {
+  background: var(--primary);
+  color: #fff;
+  border-style: solid;
+}
+
+.layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.layer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  border: 1px solid transparent;
+}
+
+.layer-item.active {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.12);
+}

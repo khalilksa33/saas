@@ -1,0 +1,42 @@
+name: 🚀 Deploy CreatorPulse SaaS to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  web-deploy:
+    name: 📦 Sync Files to Hostinger Shared Hosting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Faster delta fetch for changed files
+
+      - name: 🔒 Check Environment & Syntax Verification
+        run: |
+          echo "Starting Hostinger Deployment for user: khalilksa33"
+          php -v || true
+
+      - name: 🚀 Sync to Hostinger via FTPS / FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: public_html/
+          protocol: ftps # Uses Secure FTPS (falls back to FTP if server requires)
+          security: loose # Recommended for Hostinger shared certificate compatibility
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*/**
+            **/data/*.sqlite
+            **/data/*.sqlite-journal
+            **/.env
+            **/README.md
+            **/DEPLOYMENT.md

@@ -1,0 +1,17 @@
+# Environment
+.env
+
+# Database files
+data/*.sqlite
+data/*.sqlite-journal
+*.sql.bak
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
