@@ -33,19 +33,19 @@ $profileViews = $bioProfile['views_count'] ?? 1420;
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
         <div>
             <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
-                <h1 style="font-size: 1.85rem; font-weight: 800;">Welcome back, <?= e($user['name']) ?>! ⚡</h1>
-                <span class="badge badge-pro"><?= strtoupper(e($user['plan'])) ?> PLAN</span>
+                <h1 style="font-size: 1.85rem; font-weight: 800;"><?= __('dash_welcome_back') ?>, <?= e($user['name']) ?>! ⚡</h1>
+                <span class="badge badge-pro"><?= strtoupper(e($user['plan'])) ?> <?= __('dash_plan_tag') ?></span>
             </div>
             <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 620px;">
-                Your public bio link is live and tracking analytics. Jump into any module below to create content or grow your brand deals.
+                <?= __('dash_welcome_sub') ?>
             </p>
         </div>
         <div style="display: flex; gap: 0.75rem;">
             <a href="<?= url('tools/bio-link') ?>" class="btn btn-primary">
-                📱 Edit Bio Link
+                <?= __('dash_edit_bio') ?>
             </a>
             <a href="<?= url('p/' . e($user['username'])) ?>" target="_blank" class="btn btn-secondary">
-                ↗ View Live Site
+                <?= __('dash_view_live') ?>
             </a>
         </div>
     </div>
@@ -55,7 +55,7 @@ $profileViews = $bioProfile['views_count'] ?? 1420;
 <div class="metrics-grid">
     <div class="metric-card">
         <div class="metric-header">
-            <span class="metric-title">Bio Page Views</span>
+            <span class="metric-title"><?= __('metric_bio_views') ?></span>
             <div class="metric-icon-box" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">👁️</div>
         </div>
         <div class="metric-value"><?= number_format($profileViews) ?></div>

@@ -10,7 +10,7 @@
 /* Sidebar */
 .app-sidebar {
   width: 260px;
-  background: rgba(13, 19, 33, 0.95);
+  background: var(--bg-secondary);
   border-right: 1px solid var(--border-glass);
   display: flex;
   flex-direction: column;
@@ -132,7 +132,7 @@
 .app-topbar {
   height: 70px;
   border-bottom: 1px solid var(--border-glass);
-  background: rgba(11, 16, 27, 0.8);
+  background: var(--bg-card);
   backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
@@ -368,4 +368,35 @@
   .app-sidebar.open {
     left: 0;
   }
+  html[dir="rtl"] .app-sidebar {
+    left: auto;
+    right: -280px;
+    transition: right 0.3s ease;
+  }
+  html[dir="rtl"] .app-sidebar.open {
+    right: 0;
+  }
+}
+
+/* RTL Support for Dashboard */
+html[dir="rtl"] .app-sidebar {
+  border-right: none;
+  border-left: 1px solid var(--border-glass);
+}
+
+html[dir="rtl"] .sidebar-item.active a {
+  border-left: none;
+  border-right: 3px solid var(--primary);
+}
+
+html[dir="rtl"] .sidebar-item a {
+  text-align: right;
+}
+
+html[dir="rtl"] .app-breadcrumbs {
+  direction: rtl;
+}
+
+html[dir="rtl"] .user-mini-card {
+  text-align: right;
 }

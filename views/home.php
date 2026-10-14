@@ -1,6 +1,6 @@
 <?php
-$pageTitle = APP_NAME . ' — All-in-One Growth & Content Studio for Digital Creators';
-$pageDesc = 'Empower your digital creator business with bio-link pages, social thumbnail canvas studio, viral copywriting tools, branded QR short links, and sponsorship pricing calculators.';
+$pageTitle = APP_NAME . ' — ' . __('app_tagline');
+$pageDesc = __('app_desc');
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
@@ -8,29 +8,29 @@ require_once __DIR__ . '/../includes/header.php';
 <section style="padding: 5rem 0 3.5rem; text-align: center; position: relative;">
     <div class="container" style="max-width: 960px;">
         <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.35rem 1rem; border-radius: var(--radius-full); margin-bottom: 1.75rem;">
-            <span class="badge badge-pro">NEW 2026</span>
-            <span style="font-size: 0.85rem; color: #c7d2fe; font-weight: 500;">The All-in-One Creator Growth Suite is here</span>
+            <span class="badge badge-pro"><?= __('hero_badge') ?></span>
+            <span style="font-size: 0.85rem; color: #c7d2fe; font-weight: 500;"><?= __('hero_badge_text') ?></span>
         </div>
 
-        <h1 style="font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1;">
-            Stop juggling 5 different apps.<br>
-            <span class="heading-gradient">One Studio. Pure Creator Power.</span>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.2;">
+            <?= __('hero_title_1') ?><br>
+            <span class="heading-gradient"><?= __('hero_title_2') ?></span>
         </h1>
 
         <p style="font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--text-secondary); line-height: 1.6; max-width: 740px; margin: 0 auto 2.5rem;">
-            Supercharge your monetization and content workflow. Build high-converting bio-link micro-sites, design viral social thumbnails, generate killer video hooks, track branded QR links, and close brand sponsorships—all from a single, unified studio.
+            <?= __('hero_subtitle') ?>
         </p>
 
         <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem;">
             <a href="<?= url('register') ?>" class="btn btn-lg btn-primary">
-                <span>Start Creating for Free</span>
+                <span><?= __('hero_cta_free') ?></span>
                 <span>🚀</span>
             </a>
             <a href="<?= url('login?demo=1') ?>" class="btn btn-lg btn-secondary">
-                <span>⚡ Instant 1-Click Demo</span>
+                <span><?= __('hero_cta_demo') ?></span>
             </a>
             <a href="<?= url('p/alexcreator') ?>" target="_blank" class="btn btn-lg btn-outline">
-                <span>👁️ View Live Bio Demo</span>
+                <span><?= __('hero_cta_preview') ?></span>
             </a>
         </div>
 
@@ -38,19 +38,19 @@ require_once __DIR__ . '/../includes/header.php';
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); backdrop-filter: blur(16px);">
             <div>
                 <div style="font-size: 2.2rem; font-weight: 800; color: #fff; font-family: 'Outfit';">140,000+</div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">LINKS CLICKED DAILY</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;"><?= __('stat_clicks') ?></div>
             </div>
             <div>
                 <div style="font-size: 2.2rem; font-weight: 800; color: #a5b4fc; font-family: 'Outfit';">$2.8M+</div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">BRAND DEALS CALCULATED</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;"><?= __('stat_deals') ?></div>
             </div>
             <div>
                 <div style="font-size: 2.2rem; font-weight: 800; color: #6ee7b7; font-family: 'Outfit';">99.98%</div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">UPTIME ON HOSTINGER</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;"><?= __('stat_uptime') ?></div>
             </div>
             <div>
                 <div style="font-size: 2.2rem; font-weight: 800; color: #f472b6; font-family: 'Outfit';">5-in-1</div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">UNIFIED CREATOR MODULES</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;"><?= __('stat_modules') ?></div>
             </div>
         </div>
     </div>
@@ -60,12 +60,12 @@ require_once __DIR__ . '/../includes/header.php';
 <section id="features" style="padding: 5rem 0;">
     <div class="container">
         <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
-            <span class="badge badge-primary" style="margin-bottom: 0.75rem;">POWERFUL MODULES</span>
+            <span class="badge badge-primary" style="margin-bottom: 0.75rem;"><?= __('features_badge') ?></span>
             <h2 style="font-size: 2.4rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 1rem;">
-                Engineered for the Modern Digital Creator
+                <?= __('features_title') ?>
             </h2>
             <p style="color: var(--text-secondary); font-size: 1.05rem;">
-                Everything you need to grow your audience, produce viral assets, and monetize your influence with zero technical headaches.
+                <?= __('features_desc') ?>
             </p>
         </div>
 
@@ -77,15 +77,15 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                        <h3 class="tool-card-title">Bio-Link & Landing Pages</h3>
+                        <h3 class="tool-card-title"><?= __('tool_bio_title') ?></h3>
                         <span class="badge badge-emerald">HOT</span>
                     </div>
                     <p class="tool-card-desc">
-                        Replace boring linktrees with gorgeous Bento-style mobile landing pages. Customize 6 dark & neon themes, animated CTA buttons, social docks, and custom domains.
+                        <?= __('tool_bio_desc') ?>
                     </p>
                 </div>
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
-                    <a href="<?= url('tools/bio-link') ?>" class="btn btn-sm btn-outline" style="width: 100%;">Launch Bio Builder →</a>
+                    <a href="<?= url('tools/bio-link') ?>" class="btn btn-sm btn-outline" style="width: 100%;"><?= __('tool_bio_cta') ?></a>
                 </div>
             </div>
 
@@ -96,15 +96,15 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                        <h3 class="tool-card-title">Thumbnail & Canvas Studio</h3>
+                        <h3 class="tool-card-title"><?= __('tool_thumb_title') ?></h3>
                         <span class="badge badge-pro">CREATOR PICK</span>
                     </div>
                     <p class="tool-card-desc">
-                        Create high-CTR YouTube thumbnails, Instagram posts, and TikTok banners right inside your browser. Drag-and-drop layers, creator font presets, glowing borders, and badges.
+                        <?= __('tool_thumb_desc') ?>
                     </p>
                 </div>
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
-                    <a href="<?= url('tools/thumbnail-studio') ?>" class="btn btn-sm btn-outline" style="width: 100%;">Open Canvas Studio →</a>
+                    <a href="<?= url('tools/thumbnail-studio') ?>" class="btn btn-sm btn-outline" style="width: 100%;"><?= __('tool_thumb_cta') ?></a>
                 </div>
             </div>
 
@@ -115,14 +115,14 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                        <h3 class="tool-card-title">Viral Hooks & Caption AI</h3>
+                        <h3 class="tool-card-title"><?= __('tool_copy_title') ?></h3>
                     </div>
                     <p class="tool-card-desc">
-                        Never stare at a blank screen again. Generate high-retention video opening hooks, YouTube title A/B ideas, timestamp descriptions, viral Twitter threads, and multi-tier hashtags.
+                        <?= __('tool_copy_desc') ?>
                     </p>
                 </div>
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
-                    <a href="<?= url('tools/copywriter') ?>" class="btn btn-sm btn-outline" style="width: 100%;">Generate Hooks →</a>
+                    <a href="<?= url('tools/copywriter') ?>" class="btn btn-sm btn-outline" style="width: 100%;"><?= __('tool_copy_cta') ?></a>
                 </div>
             </div>
 
@@ -133,14 +133,14 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                        <h3 class="tool-card-title">Smart Links & Branded QR</h3>
+                        <h3 class="tool-card-title"><?= __('tool_links_title') ?></h3>
                     </div>
                     <p class="tool-card-desc">
-                        Shorten links with clean custom aliases, auto-attach UTM tracking tags for sponsors, and generate custom-colored QR codes ready for merch, print, and stream overlays.
+                        <?= __('tool_links_desc') ?>
                     </p>
                 </div>
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
-                    <a href="<?= url('tools/smart-links') ?>" class="btn btn-sm btn-outline" style="width: 100%;">Create Smart Link →</a>
+                    <a href="<?= url('tools/smart-links') ?>" class="btn btn-sm btn-outline" style="width: 100%;"><?= __('tool_links_cta') ?></a>
                 </div>
             </div>
 
@@ -151,15 +151,15 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
                 <div>
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                        <h3 class="tool-card-title">Rates & Brand Invoicing</h3>
+                        <h3 class="tool-card-title"><?= __('tool_rates_title') ?></h3>
                         <span class="badge badge-emerald">MONETIZE</span>
                     </div>
                     <p class="tool-card-desc">
-                        Know your worth. Calculate fair market sponsorship rates based on views, niche multipliers, and deliverable types. Generate and download sleek, professional PDF invoices in seconds.
+                        <?= __('tool_rates_desc') ?>
                     </p>
                 </div>
                 <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
-                    <a href="<?= url('tools/rate-calculator') ?>" class="btn btn-sm btn-outline" style="width: 100%;">Calculate Deal Rate →</a>
+                    <a href="<?= url('tools/rate-calculator') ?>" class="btn btn-sm btn-outline" style="width: 100%;"><?= __('tool_rates_cta') ?></a>
                 </div>
             </div>
 

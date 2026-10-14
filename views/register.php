@@ -86,8 +86,8 @@ require_once __DIR__ . '/../includes/header.php';
     <div class="card" style="width: 100%; max-width: 460px; padding: 2.5rem 2rem;">
         <div style="text-align: center; margin-bottom: 2rem;">
             <img src="<?= asset('images/logo-icon.svg') ?>" alt="<?= e(APP_NAME) ?>" style="margin: 0 auto 1rem; width: 48px; height: 48px; filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.45));">
-            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">Create Your Studio</h2>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">Join the all-in-one platform for modern creators</p>
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;"><?= __('auth_create_title') ?></h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;"><?= __('auth_create_sub') ?></p>
         </div>
 
         <form method="POST" action="<?= url('register') ?>">
@@ -95,12 +95,12 @@ require_once __DIR__ . '/../includes/header.php';
             <input type="hidden" name="plan" value="<?= e($chosenPlan) ?>">
 
             <div class="form-group">
-                <label class="form-label" for="name">Your Full Name</label>
+                <label class="form-label" for="name"><?= __('auth_name') ?></label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="Sarah Jenkins" required>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="username">Choose Your Creator Handle / Slug</label>
+                <label class="form-label" for="username"><?= __('auth_handle') ?></label>
                 <div style="position: relative; display: flex; align-items: center;">
                     <span style="position: absolute; left: 1rem; color: var(--text-muted); font-size: 0.9rem;">/p/</span>
                     <input type="text" id="username" name="username" class="form-control" style="padding-left: 2.5rem;" placeholder="sarahcreates" required>
@@ -108,22 +108,22 @@ require_once __DIR__ . '/../includes/header.php';
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
+                <label class="form-label" for="email"><?= __('auth_email') ?></label>
                 <input type="email" id="email" name="email" class="form-control" placeholder="sarah@example.com" required>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="password">Password (min. 6 characters)</label>
+                <label class="form-label" for="password"><?= __('auth_password') ?> (<?= __('auth_password_hint') ?>)</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.8rem;">
-                Create Free Account 🚀
+                <?= __('auth_submit_register') ?>
             </button>
         </form>
 
         <p style="text-align: center; margin-top: 1.75rem; font-size: 0.88rem; color: var(--text-secondary);">
-            Already have an account? <a href="<?= url('login') ?>" style="color: var(--primary); font-weight: 600;">Sign in here</a>
+            <?= __('auth_has_account') ?> <a href="<?= url('login') ?>" style="color: var(--primary); font-weight: 600;"><?= __('auth_signin') ?></a>
         </p>
     </div>
 </div>

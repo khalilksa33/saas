@@ -54,12 +54,31 @@ $socialIcons = [
 ];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= current_lang() ?>" dir="<?= is_rtl() ? 'rtl' : 'ltr' ?>" data-theme="<?= e(current_theme()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($name) ?> (@<?= e($data['username']) ?>) — Links & Assets</title>
     <meta name="description" content="<?= e($bio) ?>">
+
+    <?php if (defined('GTM_ID') && GTM_ID): ?>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<?= e(GTM_ID) ?>');</script>
+    <!-- End Google Tag Manager -->
+    <?php elseif (defined('GA_MEASUREMENT_ID') && GA_MEASUREMENT_ID): ?>
+    <!-- Google Analytics 4 (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e(GA_MEASUREMENT_ID) ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<?= e(GA_MEASUREMENT_ID) ?>', { 'anonymize_ip': true });
+    </script>
+    <?php endif; ?>
 
     <!-- Favicons & Mobile Icons -->
     <link rel="icon" type="image/svg+xml" href="<?= asset('images/favicon.svg') ?>">
@@ -80,6 +99,12 @@ $socialIcons = [
     <meta property="og:type" content="profile">
 </head>
 <body class="public-bio-body theme-<?= e($theme) ?>">
+    <?php if (defined('GTM_ID') && GTM_ID): ?>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?= e(GTM_ID) ?>"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <?php endif; ?>
 
     <div class="public-bio-container theme-<?= e($theme) ?>">
         <!-- Profile Header -->

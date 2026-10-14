@@ -27,7 +27,77 @@ document.addEventListener('DOMContentLoaded', () => {
       copyToClipboard(text);
     });
   });
+
+  // Init Theme from LocalStorage / Cookie
+  const savedTheme = localStorage.getItem('app_theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+
+  // Theme Dropdown Toggle
+  const themeToggles = document.querySelectorAll('.theme-dropdown-toggle');
+  themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dropdown = toggle.nextElementSibling;
+      if (dropdown && dropdown.classList.contains('theme-dropdown')) {
+        document.querySelectorAll('.theme-dropdown.show').forEach(d => {
+          if (d !== dropdown) d.classList.remove('show');
+        });
+        dropdown.classList.toggle('show');
+      }
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.theme-dropdown.show').forEach(d => d.classList.remove('show'));
+  });
+
+  // Theme Option Click
+  document.querySelectorAll('.theme-opt-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const theme = btn.getAttribute('data-theme');
+      window.setTheme(theme);
+      document.querySelectorAll('.theme-dropdown.show').forEach(d => d.classList.remove('show'));
+    });
+  });
 });
+
+/**
+ * Theme Manager & Persistence
+ */
+window.setTheme = function(theme) {
+  const allowed = ['dark', 'light', 'cyberpunk', 'sunset', 'emerald'];
+  if (!allowed.includes(theme)) theme = 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('app_theme', theme);
+  document.cookie = `app_theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;
+
+  // Update active state in UI
+  document.querySelectorAll('.theme-opt-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
+  });
+
+  // Track in Google Analytics / GTM
+  window.trackEvent('theme_change', { theme: theme });
+};
+
+/**
+ * Google Analytics & Tag Manager Event Tracking Helper
+ */
+window.trackEvent = function(eventName, eventParams = {}) {
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, eventParams);
+    }
+    if (window.dataLayer && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: eventName, ...eventParams });
+    }
+  } catch (err) {
+    // Silent fail if adblocker or offline
+  }
+};
 
 /**
  * Toast Notification System

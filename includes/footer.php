@@ -13,44 +13,44 @@
                         <span class="brand-text">iLove<span class="brand-highlight">Digital</span></span>
                     </div>
                     <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px; color: var(--text-secondary);">
-                        The all-in-one growth suite for YouTube, Instagram, TikTok, and digital creators. Built for speed, high-conversion, and effortless monetization.
+                        <?= __('footer_tagline') ?>
                     </p>
                 </div>
                 <div class="footer-col">
-                    <h4>Creator Suite</h4>
+                    <h4><?= __('dash_creator_studio') ?></h4>
                     <ul>
-                        <li><a href="<?= url('tools/bio-link') ?>">Bio-Link Builder</a></li>
-                        <li><a href="<?= url('tools/thumbnail-studio') ?>">Thumbnail Studio</a></li>
-                        <li><a href="<?= url('tools/copywriter') ?>">Viral Hook Generator</a></li>
-                        <li><a href="<?= url('tools/smart-links') ?>">Branded QR & Links</a></li>
-                        <li><a href="<?= url('tools/rate-calculator') ?>">Sponsorship Calculator</a></li>
+                        <li><a href="<?= url('tools/bio-link') ?>"><?= __('tool_bio_title') ?></a></li>
+                        <li><a href="<?= url('tools/thumbnail-studio') ?>"><?= __('tool_thumb_title') ?></a></li>
+                        <li><a href="<?= url('tools/copywriter') ?>"><?= __('tool_copy_title') ?></a></li>
+                        <li><a href="<?= url('tools/smart-links') ?>"><?= __('tool_links_title') ?></a></li>
+                        <li><a href="<?= url('tools/rate-calculator') ?>"><?= __('tool_rates_title') ?></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Resources</h4>
+                    <h4><?= __('nav_tools') ?></h4>
                     <ul>
                         <li><a href="<?= url('p/alexcreator') ?>" target="_blank">Demo Creator Page</a></li>
-                        <li><a href="<?= url('#pricing') ?>">Subscription Plans</a></li>
-                        <li><a href="<?= url('#faq') ?>">Creator Academy</a></li>
-                        <li><a href="<?= url('DEPLOYMENT.md') ?>">Hostinger Setup Guide</a></li>
+                        <li><a href="<?= url('#pricing') ?>"><?= __('nav_pricing') ?></a></li>
+                        <li><a href="<?= url('#faq') ?>"><?= __('nav_faq') ?></a></li>
+                        <li><a href="<?= url('DEPLOYMENT.md') ?>"><?= __('footer_guide') ?></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Account</h4>
+                    <h4><?= __('dash_settings') ?></h4>
                     <ul>
-                        <li><a href="<?= url('login') ?>">Creator Login</a></li>
-                        <li><a href="<?= url('register') ?>">Create Free Account</a></li>
-                        <li><a href="<?= url('dashboard') ?>">Creator Dashboard</a></li>
+                        <li><a href="<?= url('login') ?>"><?= __('auth_signin') ?></a></li>
+                        <li><a href="<?= url('register') ?>"><?= __('auth_signup') ?></a></li>
+                        <li><a href="<?= url('dashboard') ?>"><?= __('dash_overview') ?></a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; <?= date('Y') ?> <?= e(APP_NAME) ?>. All rights reserved. Crafted for modern digital creators.</p>
+                <p>&copy; <?= date('Y') ?> <?= e(APP_NAME) ?>. <?= __('footer_rights') ?></p>
                 <div style="display: flex; gap: 1.5rem;">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Security</a>
+                    <a href="#"><?= __('footer_privacy') ?></a>
+                    <a href="#"><?= __('footer_terms') ?></a>
+                    <a href="#"><?= __('footer_security') ?></a>
                 </div>
             </div>
         </div>

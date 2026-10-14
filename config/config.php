@@ -29,6 +29,10 @@ define('APP_TAGLINE', 'All-in-One Growth & Content Studio for Digital Creators')
 define('APP_VERSION', '1.0.0');
 define('APP_ENV', getenv('APP_ENV') ?: 'production'); // 'production' or 'development'
 
+// Google Tag Manager & Google Analytics 4 (khalilksa33@gmail.com)
+define('GTM_ID', getenv('GTM_ID') ?: '');
+define('GA_MEASUREMENT_ID', getenv('GA_MEASUREMENT_ID') ?: '');
+
 // Production error reporting and logging
 if (APP_ENV === 'production') {
     ini_set('display_errors', '0');

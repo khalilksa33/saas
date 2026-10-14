@@ -107,3 +107,72 @@ function slugify(string $text): string {
     $text = preg_replace('~-+~', '-', $text);
     return strtolower($text ?: 'n-a');
 }
+
+/**
+ * Language & Localization
+ */
+function current_lang(): string {
+    if (isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'ar'])) {
+        $lang = $_GET['lang'];
+        $_SESSION['app_lang'] = $lang;
+        setcookie('app_lang', $lang, time() + (365 * 86400), '/');
+        return $lang;
+    }
+    return $_SESSION['app_lang'] ?? $_COOKIE['app_lang'] ?? 'en';
+}
+
+function is_rtl(): bool {
+    return current_lang() === 'ar';
+}
+
+function __(string $key, ?string $default = null): string {
+    static $translations = [];
+    $lang = current_lang();
+    if (!isset($translations[$lang])) {
+        $file = __DIR__ . '/../languages/' . $lang . '.php';
+        if (file_exists($file)) {
+            $translations[$lang] = require $file;
+        } else {
+            $translations[$lang] = [];
+        }
+    }
+    return $translations[$lang][$key] ?? $default ?? $key;
+}
+
+function lang_switch_url(string $targetLang): string {
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $parts = parse_url($uri);
+    $path = $parts['path'] ?? '/';
+    $query = [];
+    if (!empty($parts['query'])) {
+        parse_str($parts['query'], $query);
+    }
+    $query['lang'] = $targetLang;
+    return $path . '?' . http_build_query($query);
+}
+
+/**
+ * Multi-Theme Management
+ */
+function current_theme(): string {
+    $allowed = ['dark', 'light', 'cyberpunk', 'sunset', 'emerald'];
+    if (isset($_GET['theme']) && in_array($_GET['theme'], $allowed)) {
+        $theme = $_GET['theme'];
+        $_SESSION['app_theme'] = $theme;
+        setcookie('app_theme', $theme, time() + (365 * 86400), '/');
+        return $theme;
+    }
+    return $_SESSION['app_theme'] ?? $_COOKIE['app_theme'] ?? 'dark';
+}
+
+function theme_switch_url(string $targetTheme): string {
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $parts = parse_url($uri);
+    $path = $parts['path'] ?? '/';
+    $query = [];
+    if (!empty($parts['query'])) {
+        parse_str($parts['query'], $query);
+    }
+    $query['theme'] = $targetTheme;
+    return $path . '?' . http_build_query($query);
+}
