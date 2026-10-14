@@ -8,50 +8,23 @@ on:
 
 jobs:
   web-deploy:
-    name: 📦 Sync Files to Hostinger Shared Hosting
+    name: 📦 Sync Files to Hostinger Subdomain (tools/)
     runs-on: ubuntu-latest
 
     steps:
       - name: ⬇️ Checkout Repository Code
         uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v5
         with:
-          fetch-depth: 2 # Faster delta fetch for changed files
+          python-version: '3.11'
 
-      - name: 🔒 Check Environment & Syntax Verification
+      - name: 🚀 Sync Files to Hostinger Subdomain
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR || 'tools' }}
         run: |
-          echo "Starting Hostinger Deployment for user: khalilksa33"
-          php -v || true
-
-      - name: 🧹 Clean Hostinger Subdomain Default Placeholder
-        run: |
-          python3 -c "
-          import ftplib
-          ftp = ftplib.FTP_TLS('${{ secrets.FTP_SERVER }}')
-          ftp.login('${{ secrets.FTP_USERNAME }}', '${{ secrets.FTP_PASSWORD }}')
-          ftp.prot_p()
-          try:
-              ftp.delete('tools/default.php')
-              print('✅ Removed Hostinger default.php placeholder from tools/')
-          except Exception as e:
-              print('Note (default.php):', e)
-          ftp.quit()
-          "
-
-      - name: 🚀 Sync to Hostinger via FTPS / FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: tools/
-          protocol: ftps # Uses Secure FTPS (falls back to FTP if server requires)
-          security: loose # Recommended for Hostinger shared certificate compatibility
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github*/**
-            **/data/*.sqlite
-            **/data/*.sqlite-journal
-            **/.env
-            **/README.md
-            **/DEPLOYMENT.md
+          python3 scripts/deploy_hostinger.py
